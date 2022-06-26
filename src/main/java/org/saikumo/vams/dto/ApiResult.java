@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.saikumo.pwams.constant.ApiStatus;
 import org.saikumo.vams.constant.ApiStatus;
 
 import java.io.Serializable;

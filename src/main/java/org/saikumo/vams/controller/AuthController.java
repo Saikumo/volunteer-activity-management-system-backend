@@ -1,6 +1,5 @@
 package org.saikumo.vams.controller;
 
-import jakarta.validation.Valid;
 import org.saikumo.vams.constant.RoleName;
 import org.saikumo.vams.dto.ApiResult;
 import org.saikumo.vams.dto.LoginRequest;
@@ -20,12 +19,12 @@ public class AuthController {
 	AuthService authService;
 
 	@PostMapping("/login")
-	public ApiResult login(@Valid @RequestBody LoginRequest loginRequest) {
+	public ApiResult login(@RequestBody LoginRequest loginRequest) {
 		return authService.login(loginRequest.getLoginAccount(), loginRequest.getPassword());
 	}
 
 	@PostMapping("/register")
-	public ApiResult register(@Valid @RequestBody RegisterRequest registerRequest) {
+	public ApiResult register(@RequestBody RegisterRequest registerRequest) {
 		return authService.register(registerRequest.getLoginAccount(), registerRequest.getPassword()
 				, RoleName.VOLUNTEER.getRoleName());
 	}

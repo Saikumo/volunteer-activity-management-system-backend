@@ -1,10 +1,5 @@
 package org.saikumo.vams.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.saikumo.pwams.dto.ApiResult;
-import org.saikumo.pwams.dto.ChangePasswordRequest;
-import org.saikumo.pwams.service.UserService;
 import org.saikumo.vams.dto.ApiResult;
 import org.saikumo.vams.dto.ChangePasswordRequest;
 import org.saikumo.vams.service.UserService;

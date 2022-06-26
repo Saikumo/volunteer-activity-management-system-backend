@@ -1,6 +1,5 @@
 package org.saikumo.vams.controller;
 
-import jakarta.validation.Valid;
 import org.saikumo.vams.dto.ApiResult;
 import org.saikumo.vams.dto.RegisterStaffRequest;
 import org.saikumo.vams.service.AuthService;
@@ -18,7 +17,7 @@ public class ManagerController {
 	AuthService authService;
 
 	@PostMapping("/register_staff")
-	public ApiResult registerStaff(@Valid @RequestBody RegisterStaffRequest registerStaffRequest) {
+	public ApiResult registerStaff(@RequestBody RegisterStaffRequest registerStaffRequest) {
 		return authService.register(registerStaffRequest.getLoginAccount(), registerStaffRequest.getPassword()
 				, registerStaffRequest.getRoleName());
 	}
