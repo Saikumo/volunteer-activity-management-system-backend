@@ -68,6 +68,7 @@ public class AuthService {
 		user.setAccountNonLocked(true);
 		user.setCredentialsNonExpired(true);
 		user.setUsername(loginAccount);
+		user.setNickname(loginAccount);
 		user.setPassword(passwordEncoder.encode(password));
 		List<Role> roleList = new ArrayList<>();
 		Role role = new Role();

@@ -25,6 +25,8 @@ public class User implements UserDetails {
 
 	private String username;
 
+	private String nickname;
+
 	private String password;
 
 	private boolean accountNonExpired;

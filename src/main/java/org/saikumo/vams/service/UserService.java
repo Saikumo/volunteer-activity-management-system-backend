@@ -31,4 +31,15 @@ public class UserService {
 		userRepository.save(user);
 		return ApiResult.ok();
 	}
+
+	public ApiResult changeNickname(Authentication authentication,String newNickname){
+		log.info("修改昵称，用户名为：{}",authentication.getName());
+		User user = userRepository.findUserByUsername(authentication.getName());
+		if(user == null){
+			return ApiResult.fail("数据库错误");
+		}
+		user.setNickname(newNickname);
+		userRepository.save(user);
+		return ApiResult.ok();
+	}
 }
