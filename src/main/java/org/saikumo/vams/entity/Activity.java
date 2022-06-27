@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -19,13 +20,19 @@ public class Activity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private Long mentorId;
+	private Long organizerId;
+
+	private String organizerName;
 
 	private String name;
 
 	private String description;
 
 	private String status;
+
+	private String location;
+
+	private Long timestamp;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<User> users;

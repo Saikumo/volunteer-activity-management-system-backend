@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -18,13 +20,13 @@ public class UserController {
 	UserService userService;
 
 	@PostMapping("/changepassword")
-	public ApiResult changePassword(Authentication authentication, @RequestBody ChangePasswordRequest changePasswordRequest) {
+	public ApiResult changePassword(Authentication authentication, @Valid @RequestBody ChangePasswordRequest changePasswordRequest) {
 		return userService.changePassword(authentication, changePasswordRequest.getOldPassword()
 				, changePasswordRequest.getNewPassword());
 	}
 
 	@PostMapping("/changenickname")
-	public ApiResult changeNickname(Authentication authentication, @RequestBody ChangeNicknameRequest changeNicknameRequest){
-		return userService.changeNickname(authentication,changeNicknameRequest.getNewNickname());
+	public ApiResult changeNickname(Authentication authentication, @Valid @RequestBody ChangeNicknameRequest changeNicknameRequest) {
+		return userService.changeNickname(authentication, changeNicknameRequest.getNewNickname());
 	}
 }
