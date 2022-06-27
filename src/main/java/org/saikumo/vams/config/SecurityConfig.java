@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						, RoleName.ACTIVITY_ORGANIZER.getRoleName(), RoleName.MANAGER.getRoleName())
 				.antMatchers("/api/manager/**").hasAnyAuthority(RoleName.MANAGER.getRoleName())
 				.antMatchers("/api/activityorganizer/**").hasAuthority(RoleName.ACTIVITY_ORGANIZER.getRoleName())
+				.antMatchers("/api/volunteer/**").hasAuthority(RoleName.VOLUNTEER.getRoleName())
 				.anyRequest().authenticated()
 				.and()
 				.exceptionHandling()

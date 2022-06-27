@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -36,4 +38,8 @@ public class Activity {
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<User> users;
+
+	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Comment> comments;
 }
