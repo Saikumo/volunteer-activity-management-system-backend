@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeHttpRequests()
 				//配置 权限控制规则
 				.antMatchers("/api/auth/**").permitAll()
+				.antMatchers("/api/activity/**").permitAll()
 				.antMatchers("/api/user/**").hasAnyAuthority(RoleName.VOLUNTEER.getRoleName()
 						, RoleName.ACTIVITY_ORGANIZER.getRoleName(), RoleName.MANAGER.getRoleName())
 				.antMatchers("/api/manager/**").hasAnyAuthority(RoleName.MANAGER.getRoleName())

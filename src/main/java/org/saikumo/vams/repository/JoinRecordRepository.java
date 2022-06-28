@@ -12,4 +12,8 @@ public interface JoinRecordRepository extends JpaRepository<JoinRecord,Integer> 
 
 	public List<JoinRecord> findAllByUserId(Long userId);
 
+	public JoinRecord findById(Long joinRecordId);
+
+	public List<JoinRecord> findAllByOrganizerNameAndStatus(String organizerName,String status);
+
 }

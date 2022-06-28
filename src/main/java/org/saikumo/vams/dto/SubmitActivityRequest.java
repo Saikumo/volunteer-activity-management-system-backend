@@ -14,5 +14,5 @@ public class SubmitActivityRequest {
 	@NotBlank(message = "活动地点不能为空")
 	private String location;
 	@NotBlank(message = "活动时间不能为空")
-	private Long timestamp;
+	private String timestamp;
 }

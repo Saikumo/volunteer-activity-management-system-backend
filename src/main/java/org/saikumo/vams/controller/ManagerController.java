@@ -54,4 +54,9 @@ public class ManagerController {
 		return managerService.checkActivityList();
 	}
 
+	@GetMapping("/activityinfo")
+	public ApiResult activityInfo(@RequestParam("activityId")Long activityId){
+		return managerService.activityInfo(activityId);
+	}
+
 }

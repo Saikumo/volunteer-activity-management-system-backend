@@ -1,5 +1,6 @@
 package org.saikumo.vams.service;
 
+import org.saikumo.vams.constant.ActivityStatus;
 import org.saikumo.vams.constant.JoinRecordStatus;
 import org.saikumo.vams.dto.ApiResult;
 import org.saikumo.vams.dto.CommentRequest;
@@ -43,6 +44,7 @@ public class VolunteerService {
 		joinRecord.setUserId(user.getId());
 		joinRecord.setUsername(user.getUsername());
 		joinRecord.setActivityId(activity.getId());
+		joinRecord.setActivityName(activity.getName());
 		joinRecord.setOrganizerName(activity.getOrganizerName());
 		joinRecord.setStatus(JoinRecordStatus.WAITING_CHECK.getStatus());
 
@@ -86,6 +88,12 @@ public class VolunteerService {
 		activityRepository.save(activity);
 
 		return ApiResult.ok();
+	}
+
+	public ApiResult activityList(){
+		List<Activity> activityList = activityRepository.findAllByStatus(ActivityStatus.PUBLISHED.getStatus());
+
+		return ApiResult.ok(activityList);
 	}
 
 }

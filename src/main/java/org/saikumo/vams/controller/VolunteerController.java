@@ -3,6 +3,7 @@ package org.saikumo.vams.controller;
 import org.saikumo.vams.dto.ApiResult;
 import org.saikumo.vams.dto.CommentRequest;
 import org.saikumo.vams.dto.JoinActivityRequest;
+import org.saikumo.vams.service.ManagerService;
 import org.saikumo.vams.service.VolunteerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -27,8 +28,10 @@ public class VolunteerController {
 		return volunteerService.joinRecordList(authentication);
 	}
 
-	@PostMapping("/comment")
-	public ApiResult comment(Authentication authentication, @Valid @RequestBody CommentRequest commentRequest){
-		return volunteerService.comment(authentication,commentRequest.getDescription(),commentRequest.getActivityId());
+
+
+	@GetMapping("/activitylist")
+	public ApiResult activityList(){
+		return volunteerService.activityList();
 	}
 }

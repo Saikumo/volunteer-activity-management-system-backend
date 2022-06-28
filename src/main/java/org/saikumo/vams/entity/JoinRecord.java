@@ -27,6 +27,8 @@ public class JoinRecord {
 
 	private Long activityId;
 
+	private String activityName;
+
 	private String organizerName;
 
 	private String status;

@@ -1,16 +1,12 @@
 package org.saikumo.vams.controller;
 
-import org.saikumo.vams.dto.ApiResult;
-import org.saikumo.vams.dto.ResubmitActivityRequest;
-import org.saikumo.vams.dto.SubmitActivityRequest;
+import org.saikumo.vams.dto.*;
 import org.saikumo.vams.service.ActivityOrganizerService;
+import org.saikumo.vams.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,6 +15,8 @@ import javax.validation.Valid;
 public class ActivityOrganizerController {
 	@Autowired
 	ActivityOrganizerService activityOrganizerService;
+	@Autowired
+	ManagerService managerService;
 
 
 	@PostMapping("/submitactivity")
@@ -30,8 +28,31 @@ public class ActivityOrganizerController {
 	}
 
 	@PostMapping("/resubmitactivity")
-	public ApiResult ResubmitActivity(Authentication authentication,
+	public ApiResult resubmitActivity(Authentication authentication,
 									  @Valid @RequestBody ResubmitActivityRequest resubmitActivityRequest){
 		return activityOrganizerService.resubmitActivity(authentication,resubmitActivityRequest.getActivityId());
 	}
+
+	@PostMapping("/checkjoinrecord")
+	public ApiResult checkJoinRecord(@Valid @RequestBody CheckJoinRecordRequest checkJoinRecordRequest){
+		return activityOrganizerService.checkJoinRecord(checkJoinRecordRequest.getActionType(),
+				checkJoinRecordRequest.getJoinRecordId());
+	}
+
+	@GetMapping("/organizeactivitylist")
+	public ApiResult organizeActivityList(Authentication authentication){
+		return activityOrganizerService.organizeActivityList(authentication);
+	}
+
+	@GetMapping("/joinrecordlist")
+	public ApiResult joinRecordList(Authentication authentication){
+		return activityOrganizerService.joinRecordList(authentication);
+	}
+
+	@PostMapping("/deleteactivity")
+	public ApiResult deleteActivity(@Valid @RequestBody ManagerDeleteActivityRequest managerDeleteActivityRequest){
+		return managerService.deleteActivity(managerDeleteActivityRequest.getActivityId());
+	}
+
+
 }

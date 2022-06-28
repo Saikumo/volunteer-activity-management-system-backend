@@ -2,6 +2,7 @@ package org.saikumo.vams.service;
 
 import org.saikumo.vams.constant.ActivityStatus;
 import org.saikumo.vams.dto.ApiResult;
+import org.saikumo.vams.dto.ManagerUserListResponse;
 import org.saikumo.vams.entity.Activity;
 import org.saikumo.vams.entity.User;
 import org.saikumo.vams.repository.ActivityRepository;
@@ -9,6 +10,7 @@ import org.saikumo.vams.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,7 +22,17 @@ public class ManagerService {
 
 	public ApiResult userList(){
 		List<User> userList = userRepository.findAll();
-		return ApiResult.ok(userList);
+
+		List<ManagerUserListResponse> managerUserListResponseList = new ArrayList<>();
+
+		for(User user : userList){
+			ManagerUserListResponse managerUserListResponse = new ManagerUserListResponse();
+			managerUserListResponse.setUserId(user.getId());
+			managerUserListResponse.setUsername(user.getUsername());
+			managerUserListResponse.setUserRole(user.getRoles().get(0).getName());
+			managerUserListResponseList.add(managerUserListResponse);
+		}
+		return ApiResult.ok(managerUserListResponseList);
 	}
 
 	public ApiResult deleteUser(Long userId){
@@ -59,5 +71,10 @@ public class ManagerService {
 	public ApiResult checkActivityList(){
 		List<Activity> activityList = activityRepository.findAllByStatus(ActivityStatus.WAITING_CHECK.getStatus());
 		return ApiResult.ok(activityList);
+	}
+
+	public ApiResult activityInfo(Long activityId){
+		Activity activity = activityRepository.findById(activityId);
+		return ApiResult.ok(activity);
 	}
 }

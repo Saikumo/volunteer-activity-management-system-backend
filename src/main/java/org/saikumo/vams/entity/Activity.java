@@ -34,7 +34,7 @@ public class Activity {
 
 	private String location;
 
-	private Long timestamp;
+	private String timestamp;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<User> users;

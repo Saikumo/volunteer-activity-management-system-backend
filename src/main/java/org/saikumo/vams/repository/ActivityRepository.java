@@ -18,4 +18,6 @@ public interface ActivityRepository extends JpaRepository<Activity,Integer> {
 
     public List<Activity> findAllByStatus(String status);
 
+    public List<Activity> findAllByOrganizerName(String organizerName);
+
 }
